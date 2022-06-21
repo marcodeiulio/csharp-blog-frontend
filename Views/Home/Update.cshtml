@@ -29,7 +29,6 @@
     </div>
 </div>
 
-<!-- se si vuole questa parte la si può mettere in una partial e farlo vedere agli studenti. -->
 <div class="js-alert-success alert alert-success d-none mt-3" role="alert">
   Saved successfully
 </div>
@@ -38,10 +37,8 @@
 
 <script type="text/javascript">
 
-    // leggiamo dall'url l'id dell'elemento
     const itemId = location.href.substring(location.href.lastIndexOf('/') + 1);
 
-    // carichiamo i dati dell'elemento
     axios.get(`https://localhost:5000/api/posts/${itemId}`).then((res) => {
 
         console.log('OK', res.data);
@@ -86,7 +83,7 @@
 
     function gestisciErroriValidazione(listaErrori) {
 
-        console.error('Erorr', listaErrori);
+        console.error('Error', listaErrori);
 
         pulisciValidazioniForm();
 
