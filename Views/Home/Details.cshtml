@@ -1,0 +1,47 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="my-3">Post details</h1>
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "Home")">
+                    Go back
+                </a>
+            </div>
+            <div class="post-single-image-container">
+                <img class="js_input_image">
+            </div>
+            <div class="mb-3">
+                <strong>Title:</strong>
+                <input class="js_input_title form-control d-block w-100" readonly />
+            </div>
+            <div class="mb-3">
+                <strong>Content:</strong>
+                <textarea rows="10" class="js_input_description form-control d-block w-100" readonly ></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+
+    const itemId = location.href.substring(location.href.lastIndexOf('/') + 1);
+
+    axios.get(`https://localhost:5000/api/posts/${itemId}`).then((res) => {
+
+        console.log('OK', res.data);
+
+        document.querySelector('.js_input_title').value = res.data.title;
+        document.querySelector('.js_input_description').value = res.data.description;
+        document.querySelector('.js_input_image').src = "data:image/png;base64,"+res.data.imageBytes;
+
+    }).catch((res) => {
+
+        console.error('Error', res);
+    });
+
+</script>
+
+}
